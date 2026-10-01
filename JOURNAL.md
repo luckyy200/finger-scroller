@@ -25,3 +25,5 @@ features:
 * you could change the speed of the scroll
 
  <img width="1468" height="2048" alt="image" src="https://github.com/user-attachments/assets/7a5758cc-d50e-4981-b4ac-bfa37e84041a" />
+
+**Total time spent: 1 hour**
