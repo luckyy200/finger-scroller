@@ -43,3 +43,43 @@ i spend the day researching the flex sensor, how it works through sites like 'la
 
 
 **Total time spent: 2 hour**
+
+# October 02 : reaserch & code
+i studied the bluetooth protocol, how it works, the code to connecting the microcontroller and the device, using random nerd turtorials site.
+worked on the code for the flex sensor: when its a specific dagree it would send "0" or "1", so that in the future code it would send this information to the device. 
+current code:
+
+const int flex = A1;
+int scroll = 0;
+const float VCC = 5;			// voltage at Ardunio 5V line
+const float R_DIV = 47000.0;	// resistor used to create a voltage divider
+const float flatResistance = 25000.0;	// resistance when flat
+const float bendResistance = 100000.0;	// resistance at 90 deg
+void setup() {
+	Serial.begin(9600);
+	pinMode(flex, INPUT);
+}
+void loop() {
+	// Read the ADC, and calculate voltage and resistance from it
+	int ADCflex = analogRead(flex);
+	float Vflex = ADCflex * VCC / 1023.0;
+	float Rflex = R_DIV * (VCC / Vflex - 1.0);
+	Serial.println("Resistance: " + String(Rflex) + " ohms");
+
+ float angle = map(Rflex, flatResistance, bendResistance, 0, 90.0);
+	Serial.println("Bend: " + String(angle) + " degrees");
+	Serial.println();
+	delay(500);
+  if (30 < angle && angle < 180){
+  scroll = 1;
+  Serial.println(scroll);
+  }
+  if (0 < angle && angle < 30 ){
+  scroll = 0;
+    Serial.println(scroll);
+}
+}
+
+<img width="2465" height="936" alt="image" src="https://github.com/user-attachments/assets/292a45b7-4a7b-4c09-818d-aa550b5af9e0" />
+
+**Total time spent: 4 hour**
